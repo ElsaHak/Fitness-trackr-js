@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Activity Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            background-color: #495057;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+        }
+        .sidebar .nav-link {
+            color: white;
+            margin-bottom: 10px;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #495057;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <nav class="nav flex-column">
+            <h4 style="margin-left: 3px;">Fitness Tracker</h4>
+
+            <a class="nav-link text-white" href="#" id="log-activity-link" style="margin-top: 5px;">
+                <i class="fas fa-running"></i> Log Activity
+            </a>
+            <a class="nav-link text-white" href="#" id="activity-history-link">
+                <i class="fas fa-history"></i> Activity History
+            </a>
+            <a class="nav-link text-white" href="#" id="goal-setting-link">
+                <i class="fas fa-bullseye"></i> Goal Setting
+            </a>
+            <a class="nav-link text-white" href="#" id="progress-visualization-link">
+                <i class="fas fa-chart-line"></i> Progress Visualization
+            </a>
+            <a class="nav-link text-white" href="#" id="workout-reminders-link">
+                <i class="fas fa-bell"></i> Workout Reminders
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+       
+        <div class="card mb-4" id="log-activity-section">
+            <div class="card-header">Log Activity</div>
+            <div class="card-body">
+                <form id="activity-form">
+                    <div class="form-group">
+                        <label for="activity-type">Activity Type</label>
+                        <select class="form-control" id="activity-type" required>
+                            <option value="">Select Activity</option>
+                            <option>Running</option>
+                            <option>Cycling</option>
+                            <option>Yoga</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-duration">Duration (minutes)</label>
+                        <input type="number" class="form-control" id="activity-duration" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-distance">Distance (km)</label>
+                        <input type="number" class="form-control" id="activity-distance" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-calories">Calories Burned</label>
+                        <input type="number" class="form-control" id="activity-calories" min="0" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log Activity</button>
+                </form>
+            </div>
+        </div>
+
+        
+        <div class="card mb-4" id="activity-history-section" style="display: none;">
+            <div class="card-header">Activity History</div>
+            <div class="card-body">
+                <ul class="list-group" id="activity-list"></ul>
+            </div>
+        </div>
+
+        
+        <div class="card mb-4" id="goal-setting-section" style="display: none;">
+            <div class="card-header">Set Fitness Goals</div>
+            <div class="card-body">
+                <form id="goal-form">
+                    <div class="form-group">
+                        <label for="goal-type">Goal Type</label>
+                        <select class="form-control" id="goal-type" required>
+                            <option value="">Select Goal</option>
+                            <option>Distance (km)</option>
+                            <option>Calories Burned</option>
+                            <option>Duration (minutes)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal-amount">Goal Amount</label>
+                        <input type="number" class="form-control" id="goal-amount" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Set Goal</button>
+                </form>
+                <div class="mt-4" id="current-goals">
+                    <h5>Current Goals</h5>
+                    <ul class="list-group" id="goal-list"></ul>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="card mb-4" id="progress-visualization-section" style="display: none;">
+            <div class="card-header">Progress Visualization</div>
+            <div class="card-body">
+                <canvas id="progress-chart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <div class="card mb-4" id="workout-reminders-section" style="display: none;">
+            <div class="card-header">Workout Reminders</div>
+            <div class="card-body">
+                <form id="reminder-form">
+                    <div class="form-group">
+                        <label for="reminder-time">Reminder Time (minutes)</label>
+                        <input type="number" class="form-control" id="reminder-time" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Set Reminder</button>
+                </form>
+                <div class="mt-4" id="reminder-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
